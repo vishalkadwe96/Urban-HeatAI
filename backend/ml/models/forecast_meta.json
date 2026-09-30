@@ -1,0 +1,214 @@
+{
+  "algorithm": "RandomForestRegressor (scikit-learn) x3 \u2014 LST / NDVI / rainfall",
+  "horizon_strategy": "single-step-ahead model called recursively (walk-forward) for N-day-ahead forecasts",
+  "feature_columns": [
+    "doy_sin",
+    "doy_cos",
+    "heat_factor",
+    "base_lst",
+    "lst_lag1",
+    "lst_lag2",
+    "lst_lag3",
+    "lst_lag7",
+    "lst_lag14",
+    "lst_roll7",
+    "lst_roll14",
+    "ndvi_lag1",
+    "ndvi_lag2",
+    "ndvi_lag3",
+    "ndvi_lag7",
+    "ndvi_lag14",
+    "ndvi_roll7",
+    "ndvi_roll14",
+    "rain_lag1",
+    "rain_lag2",
+    "rain_lag3",
+    "rain_lag7",
+    "rain_lag14",
+    "rain_roll7",
+    "rain_roll14"
+  ],
+  "lags_days": [
+    1,
+    2,
+    3,
+    7,
+    14
+  ],
+  "rolling_windows_days": [
+    7,
+    14
+  ],
+  "n_cities": 10,
+  "n_days_per_city": 1095,
+  "backtest_folds": 5,
+  "targets": {
+    "lst": {
+      "model_file": "forecast_lst.joblib",
+      "backtest_folds_detail": [
+        {
+          "fold": 1,
+          "train_rows": 1805,
+          "test_rows": 1801,
+          "mae": 0.5186,
+          "r2": 0.984
+        },
+        {
+          "fold": 2,
+          "train_rows": 3606,
+          "test_rows": 1801,
+          "mae": 0.4775,
+          "r2": 0.9873
+        },
+        {
+          "fold": 3,
+          "train_rows": 5407,
+          "test_rows": 1801,
+          "mae": 0.4694,
+          "r2": 0.9871
+        },
+        {
+          "fold": 4,
+          "train_rows": 7208,
+          "test_rows": 1801,
+          "mae": 0.4555,
+          "r2": 0.9861
+        },
+        {
+          "fold": 5,
+          "train_rows": 9009,
+          "test_rows": 1801,
+          "mae": 0.4631,
+          "r2": 0.9803
+        }
+      ],
+      "backtest_avg_mae": 0.4768,
+      "backtest_avg_r2": 0.985,
+      "validation_ceiling_mae": 2.5,
+      "validation_passed": true,
+      "top_feature_importances": {
+        "lst_lag1": 0.9934,
+        "lst_roll7": 0.0006,
+        "lst_lag7": 0.0005,
+        "lst_roll14": 0.0005,
+        "lst_lag2": 0.0004,
+        "lst_lag3": 0.0004,
+        "lst_lag14": 0.0004,
+        "ndvi_lag14": 0.0004
+      },
+      "n_training_rows": 10810
+    },
+    "ndvi": {
+      "model_file": "forecast_ndvi.joblib",
+      "backtest_folds_detail": [
+        {
+          "fold": 1,
+          "train_rows": 1805,
+          "test_rows": 1801,
+          "mae": 0.0055,
+          "r2": 0.9909
+        },
+        {
+          "fold": 2,
+          "train_rows": 3606,
+          "test_rows": 1801,
+          "mae": 0.0051,
+          "r2": 0.9922
+        },
+        {
+          "fold": 3,
+          "train_rows": 5407,
+          "test_rows": 1801,
+          "mae": 0.0051,
+          "r2": 0.9923
+        },
+        {
+          "fold": 4,
+          "train_rows": 7208,
+          "test_rows": 1801,
+          "mae": 0.0052,
+          "r2": 0.992
+        },
+        {
+          "fold": 5,
+          "train_rows": 9009,
+          "test_rows": 1801,
+          "mae": 0.0051,
+          "r2": 0.9922
+        }
+      ],
+      "backtest_avg_mae": 0.0052,
+      "backtest_avg_r2": 0.9919,
+      "validation_ceiling_mae": 0.08,
+      "validation_passed": true,
+      "top_feature_importances": {
+        "ndvi_lag1": 0.9964,
+        "doy_sin": 0.0005,
+        "doy_cos": 0.0002,
+        "lst_lag7": 0.0002,
+        "lst_lag14": 0.0002,
+        "ndvi_lag2": 0.0002,
+        "ndvi_lag3": 0.0002,
+        "ndvi_lag7": 0.0002
+      },
+      "n_training_rows": 10810
+    },
+    "rain": {
+      "model_file": "forecast_rain.joblib",
+      "backtest_folds_detail": [
+        {
+          "fold": 1,
+          "train_rows": 1805,
+          "test_rows": 1801,
+          "mae": 3.5929,
+          "r2": 0.1153
+        },
+        {
+          "fold": 2,
+          "train_rows": 3606,
+          "test_rows": 1801,
+          "mae": 3.6484,
+          "r2": 0.0793
+        },
+        {
+          "fold": 3,
+          "train_rows": 5407,
+          "test_rows": 1801,
+          "mae": 3.6931,
+          "r2": 0.0573
+        },
+        {
+          "fold": 4,
+          "train_rows": 7208,
+          "test_rows": 1801,
+          "mae": 3.4882,
+          "r2": 0.1152
+        },
+        {
+          "fold": 5,
+          "train_rows": 9009,
+          "test_rows": 1801,
+          "mae": 3.431,
+          "r2": 0.0814
+        }
+      ],
+      "backtest_avg_mae": 3.5707,
+      "backtest_avg_r2": 0.0897,
+      "validation_ceiling_mae": 6.0,
+      "validation_passed": true,
+      "top_feature_importances": {
+        "rain_roll14": 0.3123,
+        "doy_cos": 0.1415,
+        "ndvi_lag14": 0.0406,
+        "ndvi_lag1": 0.0358,
+        "rain_lag3": 0.0346,
+        "rain_roll7": 0.0344,
+        "doy_sin": 0.0314,
+        "lst_lag14": 0.0298
+      },
+      "n_training_rows": 10810
+    }
+  },
+  "derived_downstream": "heat_risk (HVI + risk level) and landslide_risk are NOT modeled directly \u2014 they are computed from the forecasted lst/ndvi/rainfall using the existing compute_hvi / cap_risk_by_absolute_lst / calculate_landslide_risk functions already used by the live dashboard, so forecast risk levels stay consistent with today's risk levels.",
+  "trained_at": "2026-09-30T10:17:23Z"
+}

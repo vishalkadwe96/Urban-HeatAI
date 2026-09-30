@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Heat AI — Admin</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="auth-page admin-page">
+  <canvas id="bg-canvas"></canvas>
+  <div class="bg-grid"></div>
+
+  <nav class="navbar">
+    <div class="nav-brand"><span class="logo">🌡️</span> Urban Heat AI</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="admin.html" class="active">Admin</a>
+    </div>
+  </nav>
+
+  <main class="admin-wrap">
+    <section class="auth-card admin-login" id="admin-login-panel">
+      <div class="auth-badge">ADMIN ACCESS</div>
+      <h1 class="auth-title">Operations Console</h1>
+      <p class="auth-sub">Sign in with the administrator account.</p>
+      <form id="admin-login-form" novalidate>
+        <div class="field">
+          <label for="admin-email">Admin ID</label>
+          <input id="admin-email" type="email" autocomplete="username" placeholder="admin@urbanheat.local" required>
+        </div>
+        <div class="field">
+          <label for="admin-password">Password</label>
+          <input id="admin-password" type="password" autocomplete="current-password" placeholder="Admin password" required>
+        </div>
+        <div class="auth-error" id="admin-login-error" role="alert" hidden></div>
+        <button class="auth-submit" id="admin-login-submit" type="submit">Sign in</button>
+      </form>
+      <p class="admin-login-foot">Admin password is generated once by the local setup command and is not stored in this page.</p>
+    </section>
+
+    <section class="admin-console" id="admin-console" hidden>
+      <header class="admin-heading">
+        <div>
+          <p class="admin-eyebrow">URBAN HEAT AI / ADMIN</p>
+          <h1>Operations Console</h1>
+          <p id="admin-welcome">System overview</p>
+        </div>
+        <div class="admin-actions">
+          <button class="admin-button" id="admin-refresh" type="button">Refresh</button>
+          <button class="admin-button admin-button-quiet" id="admin-logout" type="button">Log out</button>
+        </div>
+      </header>
+
+      <div class="admin-error" id="admin-error" role="alert" hidden></div>
+
+      <section class="admin-stats" aria-label="System summary">
+        <article class="admin-stat"><span>Registered users</span><strong id="stat-users">—</strong></article>
+        <article class="admin-stat"><span>Active sessions</span><strong id="stat-sessions">—</strong></article>
+        <article class="admin-stat"><span>Activity events</span><strong id="stat-events">—</strong></article>
+        <article class="admin-stat"><span>Simulations</span><strong id="stat-simulations">—</strong></article>
+        <article class="admin-stat"><span>Alerts</span><strong id="stat-alerts">—</strong></article>
+      </section>
+
+      <section class="admin-section">
+        <div class="admin-section-heading">
+          <div><p class="admin-eyebrow">ACCESS</p><h2>Users</h2></div>
+          <span class="admin-count" id="users-count">—</span>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>User</th><th>Email</th><th>Role</th><th>Created</th></tr></thead>
+            <tbody id="admin-users"><tr><td colspan="4" class="admin-empty">Loading users…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="admin-section">
+        <div class="admin-section-heading">
+          <div><p class="admin-eyebrow">AUDIT</p><h2>Recent activity</h2></div>
+          <span class="admin-count">Latest 50</span>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead><tr><th>Time</th><th>Type</th><th>Activity</th><th>City</th></tr></thead>
+            <tbody id="admin-activity"><tr><td colspan="4" class="admin-empty">Loading activity…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/effects.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
