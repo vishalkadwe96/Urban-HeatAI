@@ -18,5 +18,6 @@ async function checkHeatAlerts(city) {
 }
 // Poll on load + every 5 minutes
 const ALERT_POLL_CITY = () => (window.currentCity || 'delhi');
+
 checkHeatAlerts(ALERT_POLL_CITY());
 setInterval(() => checkHeatAlerts(ALERT_POLL_CITY()), 300000);
